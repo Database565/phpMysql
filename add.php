@@ -16,7 +16,7 @@ if(isset($_POST['addToArtist']) && $_POST['addToArtist']){
         echo"<script>window.location.href = 'artist.php';</script>";
     }
     else{
-        echo "<script>window.alert('inserted');</script>";
+        echo "<script>window.alert('Record Inserted');</script>";
         echo"<script>window.location.href = 'artist.php';</script>";
     }
 
@@ -43,11 +43,11 @@ if(isset($_POST['addToArtwork']) &&  $_POST['addToArtwork']){
     if (!empty($title) && !empty($getTitle)&& $title != $getTitle )
     {
         if(!empty($groupName) && empty($getGroupName) )
-        {$msg=$msg.".... group name inserting".$groupName;
+        {//$msg=$msg.".... group name inserting".$groupName;
             $resGroup=mysqli_query($connection,"INSERT INTO artbase.group (GName) VALUES ('$groupName')");
              $resLikeGroup=mysqli_query($connection,"insert into artbase.like_group(CustID,GName) select c.CustID,a.GName from artbase.customer c join artbase.group a where a.GName not in (select GName from artbase.like_group) ");
    
-        $msg=$msg."....group name inserted";
+        //$msg=$msg."....group name inserted";
         }
         $res=mysqli_query($connection,"INSERT INTO artwork (Title,Year,Type,Price,AName) VALUES ('$title','$year','$type','$price','$artistName')");
 
@@ -61,7 +61,7 @@ if(isset($_POST['addToArtwork']) &&  $_POST['addToArtwork']){
         }
         else{
 
-            echo "<script>window.alert('inserted group name ".$msg."');</script>";
+            echo "<script>window.alert('Record inserted');</script>";
             echo"<script>window.location.href = 'artist.php';</script>";
         }
     }
@@ -84,7 +84,7 @@ if(isset($_POST['addToCustomer']) && $_POST['addToCustomer']){
         echo"<script>window.location.href = 'artist.php';</script>";
     }
     else{
-        echo "<script>window.alert('inserted');</script>";
+        echo "<script>window.alert('Record inserted');</script>";
         echo"<script>window.location.href = 'artist.php';</script>";
     }
 
