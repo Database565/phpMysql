@@ -163,11 +163,11 @@ require_once('connection.php');
                 <!-- Select data from table -->
                 <div class="card">
                     <div class="card-header">
-                        <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                             Click here to see the database tables
                         </a>
                     </div>
-                    <div id="collapseTwo" class="collapse">
+                    <div id="collapseThree" class="collapse">
                         <div class="card-body">
 
                             <button type="button" class="btn btn-secondary getButton" data-toggle="collapse" data-target="#getArtist" name="artist">Get the list of artist</button>
@@ -187,9 +187,9 @@ require_once('connection.php');
                                 {
                                     echo "<tr>";
                                     echo "<td>" . $row['AName'] . "</td>";
-                                    echo "<td>" . $row['birthplace'] . "</td>";
-                                    echo "<td>" . $row['age'] . "</td>";
-                                    echo "<td>" . $row['style'] . "</td>";
+                                    echo "<td>" . $row['Birthplace'] . "</td>";
+                                    echo "<td>" . $row['Age'] . "</td>";
+                                    echo "<td>" . $row['Style'] . "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</table>";
@@ -213,11 +213,11 @@ require_once('connection.php');
                                 while($row = mysqli_fetch_array($resultArtist))
                                 {
                                     echo "<tr>";
-                                    echo "<td>" . $row['title'] . "</td>";
-                                    echo "<td>" . $row['year'] . "</td>";
-                                    echo "<td>" . $row['type'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
-                                    echo "<td>" . $row['AName'] . "</td>";
+                                    echo "<td>" . $row['Title'] . "</td>";
+                                    echo "<td>" . $row['Year'] . "</td>";
+                                    echo "<td>" . $row['Type'] . "</td>";
+                                    echo "<td>" . $row['Price'] . "</td>";
+                                    echo "<td>" . $row['Aname'] . "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</table>";
@@ -239,10 +239,10 @@ require_once('connection.php');
                                 while($row = mysqli_fetch_array($resultArtist))
                                 {
                                     echo "<tr>";
-                                    echo "<td>" . $row['custId'] . "</td>";
+                                    echo "<td>" . $row['CustId'] . "</td>";
                                     echo "<td>" . $row['CName'] . "</td>";
-                                    echo "<td>" . $row['address'] . "</td>";
-                                    echo "<td>" . $row['amount'] . "</td>";
+                                    echo "<td>" . $row['Address'] . "</td>";
+                                    echo "<td>" . $row['Amount'] . "</td>";
 
                                     echo "</tr>";
                                 }
@@ -266,7 +266,7 @@ require_once('connection.php');
                                 while($row = mysqli_fetch_array($resultArtist))
                                 {
                                     echo "<tr>";
-                                    echo "<td>" . $row['title'] . "</td>";
+                                    echo "<td>" . $row['Title'] . "</td>";
                                     echo "<td>" . $row['GName'] . "</td>";
 
 
@@ -282,7 +282,7 @@ require_once('connection.php');
                             <br>
                             <div id="getGroupEntries" class="collapse tablePrint">
                                 <?php
-                                $resultArtist = mysqli_query($connection,'SELECT GName FROM group');
+                                $resultArtist = mysqli_query($connection,'SELECT GName FROM artbase.group');
                                 echo "<table border='1'>";
                                 echo"<tr>";
                                 echo"<th>Group Name</th>";
@@ -298,12 +298,49 @@ require_once('connection.php');
 
 
                             </div>
+                            <br>
                             <button type="button" class="btn btn-secondary getButton" data-toggle="collapse" data-target="#getArtistEntries" name="artistEntries">Get the list of like artist entries</button>
                             <div id="getArtistEntries" class="collapse">
-                                <p>here i will write to get the artist entries</p>
-
-
+                                 <?php
+                                $resultLikeGroupArtist = mysqli_query($connection,'SELECT CustID,AName FROM artbase.like_artist');
+                                echo "<table border='1'>";
+                                echo"<tr>";
+                                echo"<th>CustID</th>";
+                                 echo"<th>AName</th>";
+                                echo"</tr>";
+                                while($row = mysqli_fetch_array($resultLikeGroupArtist))
+                                {
+                                    echo "<tr>";
+                                    echo "<td>" . $row['CustID'] . "</td>";
+                                     echo "<td>" . $row['AName'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</table>";
+                                ?>
                             </div>
+
+
+<br>
+						<button type="button" class="btn btn-secondary getButton" data-toggle="collapse" data-target="#getLikeGroupEntries" name="LikeGroupEntries">Get the list of like artist entries</button>
+                            <div id="getLikeGroupEntries" class="collapse">
+                                 <?php
+                                $resultLikeGroup = mysqli_query($connection,'SELECT CustID,GName FROM artbase.like_group');
+                                echo "<table border='1'>";
+                                echo"<tr>";
+                                echo"<th>CustID</th>";
+                                echo"<th>GName</th>";
+                                echo"</tr>";
+                                while($row = mysqli_fetch_array($resultLikeGroup))
+                                {
+                                    echo "<tr>";
+                                     echo "<td>" . $row['CustID'] . "</td>";
+                                    echo "<td>" . $row['GName'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</table>";
+                                ?>
+                            </div>
+
 
                         </div>
                     </div>
