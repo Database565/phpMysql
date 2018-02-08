@@ -125,6 +125,40 @@ require_once('connection.php');
                         </div>
                     </div>
                 </div>
+                <!-- Updating the database -->
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            Click here Update the database tables
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse">
+                        <div class="card-body">
+                            <form action="update.php" method="post">
+                            <p>This is a update querry for artist style. Select the artist name you want to change the style</p>
+                            <?php
+                            $getArtistName=mysqli_query($connection,"SELECT AName FROM artist");
+                            ?>
+                            <label>Choose Artist Name:</label>
+                            <select class="form-control" name="artistName">
+                                <?php
+                                while($row = mysqli_fetch_array($getArtistName))
+                                {?>
+                                    <option value="<?php echo($row['AName']);?>"> <?php echo($row['AName']);?> </option>
+                                <?php }
+                                ?>
+                            </select>
+                            <label>New Style: </label>
+                            <input class="form-control" type="text" name="newStyle">
+                            <br>
+                            <button class="btn btn-primary" type="submit" name="update" value="update" >Update</button>
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- Select data from table -->
                 <div class="card">
